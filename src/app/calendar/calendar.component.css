@@ -1,22 +1,29 @@
 .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .calendar-view-modes button {
-    margin-right: 10px;
-  }
-  
-  .month-view {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.view-modes {
+  display: flex;
+}
+
+.calendar-date {
+  text-align: center;
+  flex-grow: 1; /* Ocupa o espaço restante para centralizar */
+}
+
+.navigation-buttons {
+  display: flex;
+}
+.month-view {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 1px;
     height: 80vh; 
     width: 100%; 
     box-sizing: border-box;
-  }
+}
   
   .day-header {
     border: 1px solid #ccc;
@@ -54,3 +61,6 @@
     padding: 20px;
   }
   
+  .extra-day {
+    color: #aaa; /* Cor cinza para indicar que é de outro mês */
+  }

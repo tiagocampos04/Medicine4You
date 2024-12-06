@@ -1,36 +1,44 @@
 <div class="calendar-header">
-    <button (click)="navigate('prev')">Anterior</button>
+  <div class="view-modes">
+    <button (click)="setViewMode('Mês')">Mês</button>
+    <button (click)="setViewMode('Semana')">Semana</button>
+    <button (click)="setViewMode('Dia')">Dia</button>
+  </div>
+  
+  <div class="calendar-date">
     <h2>
-      {{ currentDate | date: (viewMode === 'month' ? 'MMMM yyyy' : viewMode === 'week' ? 'ww - yyyy' : 'fullDate') }}
+      {{ currentDate | date: (viewMode === 'Mês' ? 'MMMM yyyy' : viewMode === 'Semana' ? 'ww - yyyy' : 'fullDate') }}
     </h2>
-    <button (click)="navigate('next')">Próximo</button>
+  </div>
+    
+    <div class="navigation-buttons">
+      <button (click)="navigate('prev')"> < </button>
+      <button (click)="navigate('next')">></button>
+    </div>
+
   </div>
   
-  <div class="calendar-view-modes">
-    <button (click)="setViewMode('month')">Mês</button>
-    <button (click)="setViewMode('week')">Semana</button>
-    <button (click)="setViewMode('day')">Dia</button>
-  </div>
-  
-  <!-- Visualização de Mês -->
-  <div *ngIf="viewMode === 'month'" class="month-view">
+  <div *ngIf="viewMode === 'Mês'" class="month-view">
     <div class="day-header" *ngFor="let day of ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']">
       {{ day }}
     </div>
-    <div class="day-cell" *ngFor="let day of daysInMonth" (click)="selectDate(day)">
-      {{ day.getDate() }}
-    </div>
+    <div class="day-cell" 
+     *ngFor="let day of daysInMonth" 
+     [class.extra-day]="day.getMonth() !== currentDate.getMonth()" 
+     (click)="selectDate(day)">
+  {{ day.getDate() }}
+</div>
   </div>
   
   <!-- Visualização de Semana -->
-  <div *ngIf="viewMode === 'week'" class="week-view">
+  <div *ngIf="viewMode === 'Semana'" class="week-view">
     <div class="week-day" *ngFor="let day of daysInWeek">
       <h3>{{ day | date: 'EEE, dd/MM' }}</h3>
     </div>
   </div>
   
   <!-- Visualização de Dia -->
-  <div *ngIf="viewMode === 'day'" class="day-view">
+  <div *ngIf="viewMode === 'Dia'" class="day-view">
     <h3>{{ selectedDate | date: 'fullDate' }}</h3>
   </div>
   
