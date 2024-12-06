@@ -2,11 +2,44 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 2px;
 }
-
 .view-modes {
   display: flex;
 }
+
+.view-modes button {
+  padding: 10px 20px; /* Ajusta o tamanho dos botões */
+  font-size: 16px; /* Ajusta o tamanho do texto */
+  border: 2px solid #ccc; /* Adiciona uma borda */
+  border-right: none; /* Remove a borda direita dos botões do meio */
+  background-color: #f9f9f9; /* Define a cor de fundo */
+  cursor: pointer; /* Adiciona um ponteiro ao passar o mouse */
+  transition: background-color 0.3s ease; /* Transição suave */
+}
+
+/* Primeiro botão (bordas arredondadas apenas à esquerda) */
+.view-modes button:first-child {
+  border-top-left-radius: 10px; /* Arredonda a borda superior esquerda */
+  border-bottom-left-radius: 10px; /* Arredonda a borda inferior esquerda */
+}
+
+/* Último botão (bordas arredondadas apenas à direita) */
+.view-modes button:last-child {
+  border-top-right-radius: 10px; /* Arredonda a borda superior direita */
+  border-bottom-right-radius: 10px; /* Arredonda a borda inferior direita */
+  border-right: 2px solid #ccc; /* Adiciona a borda direita ao último botão */
+}
+
+/* Estilo ao passar o mouse */
+.view-modes button:hover {
+  background-color: #e0e0e0; /* Cor ao passar o mouse */
+}
+
+.view-modes button:active {
+  background-color: #d6d6d6; /* Cor ao clicar */
+}
+
 
 .calendar-date {
   text-align: center;
@@ -16,14 +49,49 @@
 .navigation-buttons {
   display: flex;
 }
-.month-view {
+
+.navigation-buttons button {
+  padding: 10px 20px; /* Ajusta o tamanho dos botões */
+  font-size: 16px; /* Ajusta o tamanho do texto */
+  border: 2px solid #ccc; /* Adiciona uma borda */
+  border-right: none; /* Remove a borda direita dos botões do meio */
+  background-color: #f9f9f9; /* Define a cor de fundo */
+  cursor: pointer; /* Adiciona um ponteiro ao passar o mouse */
+  transition: background-color 0.3s ease;
+}
+
+
+/* Primeiro botão (bordas arredondadas apenas à esquerda) */
+.navigation-buttons button:first-child {
+  border-top-left-radius: 10px; /* Arredonda a borda superior esquerda */
+  border-bottom-left-radius: 10px; /* Arredonda a borda inferior esquerda */
+}
+
+/* Último botão (bordas arredondadas apenas à direita) */
+.navigation-buttons button:last-child {
+  border-top-right-radius: 10px; /* Arredonda a borda superior direita */
+  border-bottom-right-radius: 10px; /* Arredonda a borda inferior direita */
+  border-right: 2px solid #ccc; /* Adiciona a borda direita ao último botão */
+}
+
+/* Estilo ao passar o mouse */
+.navigation-buttons button:hover {
+  background-color: #e0e0e0; /* Cor ao passar o mouse */
+}
+
+.navigation-buttons button:active {
+  background-color: #d6d6d6; /* Cor ao clicar */
+}
+
+  .month-view {
+    margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 1px;
     height: 80vh; 
     width: 100%; 
     box-sizing: border-box;
-}
+  }
   
   .day-header {
     border: 1px solid #ccc;
