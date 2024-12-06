@@ -1,0 +1,56 @@
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .calendar-view-modes button {
+    margin-right: 10px;
+  }
+  
+  .month-view {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    height: 80vh; 
+    width: 100%; 
+    box-sizing: border-box;
+  }
+  
+  .day-header {
+    border: 1px solid #ccc;
+    font-weight: bold;
+    text-align: center;
+    align-content: center;
+  }
+  
+  .day-cell {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .day-cell:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .week-view {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .week-day {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .day-view {
+    text-align: center;
+    font-size: 18px;
+    padding: 20px;
+  }
+  
