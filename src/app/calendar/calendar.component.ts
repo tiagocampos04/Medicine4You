@@ -13,11 +13,13 @@ export class CalendarComponent implements OnInit {
   viewMode: 'Dia' | 'Semana' | 'Mês' = 'Mês'; // Modo de exibição
   daysInMonth: Date[] = []; // Dias no mês
   daysInWeek: Date[] = []; // Dias na semana
+  hoursInDay: string[] = []; // Horas no dia
   selectedDate: Date = new Date(); // Data selecionada
 
   ngOnInit(): void {
     this.generateMonthView(); // Gera a visualização do mês ao iniciar
     this.generateWeekView(); // Gera a visualização da semana
+    this.generateHours(); // Gera a lista de horas do dia
   }
 
   // Gera os dias para a visualização mensal
@@ -55,6 +57,13 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+  // Gera a lista de horas do dia (00:00 - 23:00)
+  generateHours(): void {
+    this.hoursInDay = Array.from({ length: 24 }, (_, i) => 
+      `${i.toString().padStart(2, '0')}:00`
+    );
+  }
+
   // Pega o início da semana (domingo)
   getStartOfWeek(date: Date): Date {
     const start = new Date(date);
@@ -68,24 +77,42 @@ export class CalendarComponent implements OnInit {
     this.viewMode = mode;
   }
 
-  // Navegar entre dias, semanas ou meses
   navigate(direction: 'prev' | 'next'): void {
     if (this.viewMode === 'Dia') {
-      this.currentDate.setDate(this.currentDate.getDate() + (direction === 'prev' ? -1 : 1));
+      this.selectedDate.setDate(this.selectedDate.getDate() + (direction === 'prev' ? -1 : 1));
+      this.selectedDate = new Date(this.selectedDate);
+
+     // Atualiza a referência
     } else if (this.viewMode === 'Semana') {
       this.currentDate.setDate(this.currentDate.getDate() + (direction === 'prev' ? -7 : 7));
+      this.currentDate = new Date(this.currentDate); // Atualiza a referência
+      this.generateWeekView();
     } else if (this.viewMode === 'Mês') {
       this.currentDate.setMonth(this.currentDate.getMonth() + (direction === 'prev' ? -1 : 1));
+      this.currentDate = new Date(this.currentDate); // Atualiza a referência
+      this.generateMonthView(); // Regenera o mês
     }
-
-    this.currentDate = new Date(this.currentDate);
-    this.generateMonthView();
-    this.generateWeekView();
   }
-
   // Seleciona uma data (usada na visualização diária)
   selectDate(date: Date): void {
     this.selectedDate = date;
     this.viewMode = 'Dia';
+  }
+
+  getFirstDayOfWeek(): Date {
+    const date = new Date(this.currentDate);
+    const dayOfWeek = date.getDay(); // 0 para domingo, 6 para sábado
+    const diff = dayOfWeek === 0 ? 0 : -dayOfWeek; // Diferença para chegar ao início da semana
+    date.setDate(date.getDate() + diff); // Ajusta para o primeiro dia da semana
+    return date;
+  }
+  
+  // Retorna o último dia da semana (sábado)
+  getLastDayOfWeek(): Date {
+    const date = new Date(this.currentDate);
+    const dayOfWeek = date.getDay(); // 0 para domingo, 6 para sábado
+    const diff = dayOfWeek === 0 ? 6 : 6 - dayOfWeek; // Diferença para chegar ao final da semana
+    date.setDate(date.getDate() + diff); // Ajusta para o último dia da semana
+    return date;
   }
 }

@@ -6,9 +6,18 @@
   </div>
   
   <div class="calendar-date">
-    <h2>
-      {{ currentDate | date: (viewMode === 'Mês' ? 'MMMM yyyy' : viewMode === 'Semana' ? 'ww - yyyy' : 'fullDate') }}
-    </h2>
+    
+      <div class="calendar-date">
+        <h2>
+          {{ 
+            viewMode === 'Mês' ? (currentDate | date: 'MMMM yyyy' | titlecase) :
+            viewMode === 'Semana' ? 
+            (getFirstDayOfWeek() | date: 'd MMMM' | titlecase) + ' - ' + (getLastDayOfWeek() | date: 'd MMMM' | titlecase) :
+            (currentDate | date: 'fullDate' | titlecase)
+          }}
+        </h2>
+      </div>
+      
   </div>
     
     <div class="navigation-buttons">
@@ -30,15 +39,40 @@
 </div>
   </div>
   
-  <!-- Visualização de Semana -->
   <div *ngIf="viewMode === 'Semana'" class="week-view">
-    <div class="week-day" *ngFor="let day of daysInWeek">
-      <h3>{{ day | date: 'EEE, dd/MM' }}</h3>
+    <!-- Coluna de Horas -->
+    <div class="hours-column">
+      <div class="hour-slot" *ngFor="let hour of hoursInDay">
+        {{ hour }}
+      </div>
+    </div>
+  
+    <!-- Colunas dos Dias -->
+    <div class="week-days">
+      <div class="week-day" *ngFor="let day of daysInWeek">
+        <h3>{{ day | date: 'EEEE, dd/MM' | titlecase }}</h3>
+        <div class="hour-slots">
+          <div class="hour-slot" *ngFor="let hour of hoursInDay"></div>
+        </div>
+      </div>
     </div>
   </div>
-  
   <!-- Visualização de Dia -->
   <div *ngIf="viewMode === 'Dia'" class="day-view">
-    <h3>{{ selectedDate | date: 'fullDate' }}</h3>
-  </div>
+    <div class="day-view-container">
+      <!-- Coluna de Horas -->
+      <div class="day-hours-column">
+        <div class="day-hour-slot" *ngFor="let hour of hoursInDay">
+          {{ hour }}
+        </div>
+      </div>
   
+      <!-- Coluna do Dia -->
+      <div class="day-main-column">
+        <h3>{{ selectedDate | date: 'EEEE, dd/MM/yyyy' | titlecase }}</h3>
+        <div class="day-hour-slots">
+          <div class="day-hour-slot" *ngFor="let hour of hoursInDay"></div>
+        </div>
+      </div>
+    </div>
+</div>

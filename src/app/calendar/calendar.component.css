@@ -112,21 +112,108 @@
   }
   
   .week-view {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Coluna de horas + dias da semana */
+    height: 80vh; /* Altura total */
+    box-sizing: border-box;
+  }
+  
+  .hours-column {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    border-right: 1px solid #ccc;
+    background-color: #f9f9f9;
+    text-align: center;
+    font-size: 14px;
+    height: 100%;
+  }
+  
+  .hour-slot {
+    border-top: 1px solid #ddd;
+    padding: 5px;
+    height: 40px; /* Altura fixa por hora */
+    line-height: 40px; /* Centraliza o texto verticalmente */
+  }
+  
+  .week-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 colunas para os dias da semana */
   }
   
   .week-day {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
     border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
+    background-color: #f9f9f9;
   }
   
-  .day-view {
+  .week-day h3 {
     text-align: center;
-    font-size: 18px;
-    padding: 20px;
+    padding: 5px;
+    background-color: #e9e9e9;
+    margin: 0;
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .hour-slots {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .hour-slot {
+    height: 25px;
+    border-top: 1px solid #ddd;
+  }
+  
+  .day-view-container {
+    display: grid;
+    grid-template-columns: 60px 1fr; /* Coluna de horas + coluna do dia */
+    height: 80vh; /* Altura total */
+    box-sizing: border-box;
+  }
+  
+  .day-hours-column {
+    display: grid;
+    grid-template-rows: repeat(24, 40px); /* 24 horários, cada um com altura fixa */
+    border-right: 1px solid #ccc;
+    background-color: #f9f9f9;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  .day-hour-slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #ddd;
+    height: 40px; /* Altura fixa */
+    line-height: 40px; /* Centraliza verticalmente */
+  }
+  
+  .day-main-column {
+    display: grid;
+    grid-template-rows: 40px repeat(24, 40px); /* Cabeçalho + 24 horários */
+  }
+  
+  .day-main-column h3 {
+    grid-row: 1 / 2; /* O cabeçalho ocupa apenas a primeira linha */
+    text-align: center;
+    padding: 5px;
+    background-color: #e9e9e9;
+    margin: 0;
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .day-hour-slots {
+    grid-row: 2 / 26; /* Horários começam abaixo do cabeçalho */
+  }
+  
+  .day-hour-slot {
+    border-top: 1px solid #ddd;
+    height: 40px; /* Altura fixa para alinhar com a coluna de horas */
   }
   
   .extra-day {
