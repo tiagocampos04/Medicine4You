@@ -25,4 +25,19 @@ export class AdministradorListComponent implements OnInit {
       },
     });
   }
+
+  verAdmin(admin: any): void {
+    console.log('Ver detalhes do administrador:', admin);
+    // Lógica adicional para exibir detalhes
+  }
+
+  editarAdmin(admin: any): void {
+    console.log('Editar administrador:', admin);
+    // Lógica adicional para edição
+  }
+
+  eliminarAdmin(admin: any): void {
+    console.log('Eliminar administrador:', admin);
+    // Lógica adicional para eliminação
+  }
 }

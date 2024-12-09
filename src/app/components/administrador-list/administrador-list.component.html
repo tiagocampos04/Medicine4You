@@ -1,26 +1,31 @@
 <div *ngIf="administradores && administradores.length > 0; else noData">
-    <h2>Lista de Administradores</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Email</th>
-          <th>NIF</th>
-          <th>Telemóvel</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let admin of administradores">
-          <td>{{ admin.nome_administrador }}</td>
-          <td>{{ admin.email_administrador }}</td>
-          <td>{{ admin.nif_administrador }}</td>
-          <td>{{ admin.telemovel_administrador }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
-  <ng-template #noData>
-    <p>Nenhum administrador encontrado.</p>
-  </ng-template>
-  
+  <h2>Lista de Administradores</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>NIF</th>
+        <th>Telemóvel</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let admin of administradores">
+        <td>{{ admin.nome_administrador }}</td>
+        <td>{{ admin.email_administrador }}</td>
+        <td>{{ admin.nif_administrador }}</td>
+        <td>{{ admin.telemovel_administrador }}</td>
+        <td>
+          <button (click)="verAdmin(admin)">Ver</button>
+          <button (click)="editarAdmin(admin)">Editar</button>
+          <button (click)="eliminarAdmin(admin)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noData>
+  <p>Nenhum administrador encontrado.</p>
+</ng-template>
