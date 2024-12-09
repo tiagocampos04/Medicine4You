@@ -119,6 +119,7 @@
   }
   
   .hours-column {
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     border-right: 1px solid #ccc;
@@ -181,6 +182,7 @@
     background-color: #f9f9f9;
     text-align: center;
     font-size: 14px;
+    margin-top: 40px;
   }
   
   .day-hour-slot {
@@ -189,7 +191,8 @@
     justify-content: center;
     border-bottom: 1px solid #ddd;
     height: 40px; /* Altura fixa */
-    line-height: 40px; /* Centraliza verticalmente */
+    line-height: 40px; 
+    /* Centraliza verticalmente */
   }
   
   .day-main-column {

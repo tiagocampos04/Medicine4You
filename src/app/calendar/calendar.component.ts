@@ -22,6 +22,33 @@ export class CalendarComponent implements OnInit {
     this.generateHours(); // Gera a lista de horas do dia
   }
 
+  events = [
+    { title: 'Consulta 1', start: new Date('2024-12-09T09:00:00'), end: new Date('2024-12-09T10:30:00') },
+    { title: 'Consulta 2', start: new Date('2024-12-09T14:00:00'), end: new Date('2024-12-09T15:00:00') },
+    { title: 'Consulta 4', start: new Date('2024-12-10T00:00:00'), end: new Date('2024-12-10T01:00:00') },
+    { title: 'Consulta 4', start: new Date('2024-12-10T01:01:00'), end: new Date('2024-12-10T01:30:00') }
+  ];
+  
+  getEventsForDay(day: Date): any[] {
+    // Filtra os eventos para retornar os que são no mesmo dia
+    return this.events.filter(event => 
+      event.start.getDate() === day.getDate() &&
+      event.start.getMonth() === day.getMonth() &&
+      event.start.getFullYear() === day.getFullYear()
+    );
+  }
+
+  getEventsForWeek(): any[] {
+    const startOfWeek = this.getStartOfWeek(this.currentDate); // Obtém o início da semana
+    const endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(startOfWeek.getDate() + 6); // Último dia da semana (sábado)
+  
+    // Filtra os eventos que ocorrem na semana
+    return this.events.filter(event => 
+      event.start >= startOfWeek && event.end <= endOfWeek
+    );
+  }
+
   // Gera os dias para a visualização mensal
   generateMonthView(): void {
     const start = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), 1);
@@ -114,5 +141,18 @@ export class CalendarComponent implements OnInit {
     const diff = dayOfWeek === 0 ? 6 : 6 - dayOfWeek; // Diferença para chegar ao final da semana
     date.setDate(date.getDate() + diff); // Ajusta para o último dia da semana
     return date;
+  }
+
+  getEventPosition(start: Date): string {
+    const startHour = start.getHours();
+    const startMinutes = start.getMinutes();
+    const position = startHour * 60 + startMinutes; // Total de minutos desde meia-noite
+    return `${(position / 60) * 40 + 10}px`; // 40px é a altura de cada hora, 10px de espaçamento
+  }
+  
+  // Função para calcular a altura do evento com a duração, incluindo um espaçamento entre eventos
+  getEventHeight(start: Date, end: Date): string {
+    const durationInMinutes = (end.getTime() - start.getTime()) / (1000 * 60); // Duração em minutos
+    return `${(durationInMinutes / 60) * 40 - 5}px`; // Ajusta a altura (40px por hora, -5px para espaçamento)
   }
 }
