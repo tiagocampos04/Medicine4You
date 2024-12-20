@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5213/Medicine4You/ControladorAdministrador'; 
+  private apiUrl = 'https://localhost:7029/Medicine4You/ControladorAdministrador'; 
 
   constructor(private http: HttpClient, private router: Router) {}
   

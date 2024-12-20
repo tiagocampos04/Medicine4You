@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AdministradorService {
-  private apiUrl = 'http://localhost:5213/Medicine4You/ControladorAdministrador/ListaAdministrador'; // Substitua pela URL real da API
+  private apiUrl = 'https://localhost:7029/Medicine4You/ControladorAdministrador/ListaAdministrador'; // Substitua pela URL real da API
 
   constructor(private http: HttpClient) {}
 
