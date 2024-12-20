@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './google-calendar.component.html',
   styleUrls: ['./google-calendar.component.css']
 })
-export class GoogleCalendar {
+export class GoogleCalendarComponent {
   calendarUrl: string = "https://calendar.google.com/calendar/embed?src=tiagocampos2212%40gmail.com&ctz=Europe%2FLisbon";
 
   changeCalendar(newCalendarId: string): void {
