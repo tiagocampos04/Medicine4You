@@ -1,0 +1,22 @@
+.container {
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .restrictions {
+    margin-left: 20px;
+    margin-top: 5px;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+  
+  select{
+    height: 30px;
+    width: 400px;
+  }

@@ -1,0 +1,34 @@
+<!-- Botão para adicionar um novo exame -->
+<button (click)="adicionarSelect()">Adicionar Novo Exame</button>
+
+<!-- Lista de selects dinâmicos com checkboxes -->
+<div *ngFor="let exameSelecionado of examesSelecionados; let i = index">
+  <div style="margin-bottom: 10px;">
+    <!-- Select de Exame -->
+    <select [(ngModel)]="examesSelecionados[i].cod_sns" (change)="onExameChange(i)">
+      <option *ngFor="let exame of examesDisponiveis" [value]="exame.cod_sns">
+        {{ exame.des_mcdt }}
+      </option>
+    </select>
+
+    <!-- Checkboxes para opções de agendamento -->
+    <label>
+      <input
+        type="checkbox"
+        [(ngModel)]="examesSelecionados[i].mesmoDia"
+      />
+      Mesmo dia
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        [(ngModel)]="examesSelecionados[i].antesConsulta"
+      />
+      Antes da consulta
+    </label>
+  </div>
+</div>
+
+<!-- Exibe os exames selecionados e suas opções -->
+<p>Exames selecionados e suas opções:</p>
+<pre>{{ examesSelecionados | json }}</pre>
